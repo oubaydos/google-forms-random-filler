@@ -1,4 +1,3 @@
-
 def get_entries_ids(url):
     """
         url : filled form url
@@ -14,3 +13,9 @@ def get_entries_ids(url):
         if i.startswith("entry"):
             L.append(i)
     return L
+
+
+def generate_post_request_url(url):
+    post_url = url.split("/")
+    post_url[-1] = "formResponse"
+    return "/".join(post_url)
