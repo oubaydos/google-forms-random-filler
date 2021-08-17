@@ -8,14 +8,16 @@ probabilities = dict()
 global_name_id = ""
 phone_number_id = ""
 
+
 def fill_choices(entry_id: str, possible_values: list, name_entry_id="", phone_number_entry_id=""):
     """fill list of possible choices (uniformly distributed)"""
     L[entry_id] = possible_values
     global global_name_id, phone_number_id
     if global_name_id == "":
         global_name_id = name_entry_id
-    if phone_number_id =="":
+    if phone_number_id == "":
         phone_number_id = phone_number_entry_id
+
 
 def get_random_choice(entry_id: str):
     """get a random uniform choice for entry_id"""
@@ -31,15 +33,12 @@ def get_random_choices():
     rst = dict()
     for i in L.keys():
         if not check_if_entry_is_name_or_id(i):
-            rst[i]=random.choice(L.get(i))
+            rst[i] = random.choice(L.get(i))
     if global_name_id != "":
-        rst[global_name_id]=check_if_entry_is_name_or_id(global_name_id)
+        rst[global_name_id] = check_if_entry_is_name_or_id(global_name_id)
     if phone_number_id != "":
-        rst[phone_number_id]=check_if_entry_is_name_or_id(phone_number_id)
-    rstList = []
-    for i in L.keys():
-        rstList.append(rst[i])
-    return rstList
+        rst[phone_number_id] = check_if_entry_is_name_or_id(phone_number_id)
+    return rst
 
 
 def update_probability(entry_id: str, probability: list):
@@ -99,9 +98,11 @@ def check_if_entry_is_name_or_id(entry_id: str):
         return random.choice(random_phone_numbers)
     return False
 
+
 def get_name_id():
     global global_name_id
     return global_name_id
+
 
 def get_phone_id():
     global phone_number_id
