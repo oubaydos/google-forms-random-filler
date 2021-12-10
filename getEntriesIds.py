@@ -1,3 +1,6 @@
+import logging
+
+
 def get_entries_ids(url):
     """
         url : filled form url
@@ -6,6 +9,7 @@ def get_entries_ids(url):
 
         returns list of form entries ids
         """
+    logging.debug(f"get_entries_ids <-- {url}")
     from urllib import parse
     L = []
     for i in dict(parse.parse_qsl(parse.urlsplit(url).query)).keys():
